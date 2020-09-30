@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Note from "./Note/Note";
-import FoldersFile from "./FoldersFile/FoldersFile";
-import SideBar from "./SideBar/SideBar";
-import dummyStore from "./dummy-store";
+import Note from "../Note/Note";
+import FoldersFile from "../FoldersFile/FoldersFile";
+import SideBar from "../SideBar/SideBar";
+import dummyStore from "../dummy-store";
 
 class App extends Component {
   state = {
@@ -19,7 +19,7 @@ class App extends Component {
 
   renderMain() {
     const { notes, folders } = this.state;
-   return ()
+    return <Route />;
   }
 
   render() {
