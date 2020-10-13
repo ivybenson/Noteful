@@ -7,12 +7,33 @@ import NoteListMain from "../NoteListMain/NoteListMain";
 import NotePageMain from "../NotePageMain/NotePageMain";
 import ApiContext from "../APIContext";
 import config from "../config";
+import AddNote from "../AddNote/AddNote";
+import AddFolder from "../AddFolder/AddFolder";
 import "./App.css";
 
 class App extends Component {
   state = {
     notes: [],
     folders: [],
+    newFolder: {
+      hasError: false,
+      touched: false,
+      name: "",
+    },
+    newNote: {
+      name: {
+        touched: false,
+        value: "",
+      },
+      folder_id: {
+        touched: false,
+        value: "",
+      },
+      content: {
+        touched: false,
+        value: "",
+      },
+    },
   };
 
   componentDidMount() {
@@ -35,9 +56,43 @@ class App extends Component {
       });
   }
 
+  updateNewFolderName = (name) => {
+    this.setState({
+      newFolder: {
+        hasError: false,
+        touched: true,
+        name: name,
+      },
+    });
+  };
+
+  updateNewNoteData = (input, value) => {
+    this.setState({
+      newNote: {
+        ...this.state.newNote,
+        [input]: {
+          touched: true,
+          value: value,
+        },
+      },
+    });
+  };
+
   handleDeleteNote = (noteId) => {
     this.setState({
       notes: this.state.notes.filter((note) => note.id !== noteId),
+    });
+  };
+
+  handleAddNote = (note) => {
+    this.setState({
+      notes: [...this.state.notes, note],
+    });
+  };
+
+  handleAddFolder = (newFolder) => {
+    this.setState({
+      folders: [...this.state.folders, newFolder],
     });
   };
 
@@ -49,7 +104,7 @@ class App extends Component {
         ))}
         <Route path="/note/:noteId" component={NotePageNav} />
         <Route path="/add-folder" component={NotePageNav} />
-        <Route path="add-note" component={NotePageNav} />
+        <Route path="/add-note" component={NotePageNav} />
       </>
     );
   }
@@ -61,6 +116,8 @@ class App extends Component {
           <Route exact key={path} path={path} component={NoteListMain} />
         ))}
         <Route path="/note/:noteId" component={NotePageMain} />
+        <Route path="/add-folder" component={AddFolder} />
+        <Route path="/add-note" component={AddNote} />
       </>
     );
   }
@@ -70,6 +127,12 @@ class App extends Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
+      addFolder: this.handleAddFolder,
+      newFolder: this.state.newFolder,
+      updateNewFolderName: this.updateNewFolderName,
+      newNote: this.state.newNote,
+      handleAddNote: this.handleAddNote,
+      updateNewNoteData: this.updateNewNoteData,
     };
     return (
       <ApiContext.Provider value={value}>
