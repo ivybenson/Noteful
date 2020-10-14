@@ -98,8 +98,8 @@ export default class AddNote extends React.Component {
           />
           <label>Select a Folder For New Note</label>
           <select
-            name="folder_id"
-            id="folder_id"
+            name="folderId"
+            id="folderId"
             aria-required="true"
             aria-label="folder-selections"
             required
