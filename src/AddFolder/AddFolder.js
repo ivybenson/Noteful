@@ -50,9 +50,9 @@ export default class AddFolder extends Component {
         >
           <label>
             Name:
-            {/* {this.context.newFolder.touched && (
+            {this.context.newFolder.touched && (
               <p>{this.validateFolderName()}</p>
-            )} */}
+            )}
           </label>
           <input
             type="text"
