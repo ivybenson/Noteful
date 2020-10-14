@@ -59,6 +59,7 @@ export default class AddFolder extends Component {
             name="newFolder"
             placeholder="Folder name here!"
             id="newFolder"
+            required
             aria-required="true"
             aria-label="Name"
             onChange={(e) => this.updateFolderName(e)}

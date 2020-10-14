@@ -13,11 +13,7 @@ export default class Note extends React.Component {
     name: "Default Note",
     modified: new Date(),
   };
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    modified: PropTypes.string.isRequired,
-  };
+
   static contextType = ApiContext;
 
   handleClickDelete = (e) => {
@@ -69,3 +65,9 @@ export default class Note extends React.Component {
     );
   }
 }
+
+Note.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  modified: PropTypes.string.isRequired,
+};

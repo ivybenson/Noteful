@@ -74,7 +74,6 @@ export default class AddNote extends React.Component {
             placeholder="Name your note!"
             aria-required="true"
             aria-label="Name"
-            defaultValue="Note Name"
             onChange={(e) =>
               this.context.updateNewNoteData(e.target.name, e.target.value)
             }
@@ -90,9 +89,9 @@ export default class AddNote extends React.Component {
             name="content"
             id="content"
             placeholder="New note here."
+            required
             aria-required="true"
             aria-label="note-content"
-            defaultValue="Content"
             onChange={(e) =>
               this.context.updateNewNoteData(e.target.name, e.target.value)
             }
@@ -103,6 +102,7 @@ export default class AddNote extends React.Component {
             id="folder_id"
             aria-required="true"
             aria-label="folder-selections"
+            required
             onChange={(e) =>
               this.context.updateNewNoteData(e.target.name, e.target.value)
             }
