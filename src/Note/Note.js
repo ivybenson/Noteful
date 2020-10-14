@@ -1,14 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { format, parseISO } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ApiContext from "../APIContext";
 import config from "../config";
 import "./Note.css";
+import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
   static defaultProps = {
     onDeleteNote: () => {},
+    id: "0",
+    name: "Default Note",
+    modified: new Date(),
+  };
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired,
   };
   static contextType = ApiContext;
 
@@ -36,7 +44,8 @@ export default class Note extends React.Component {
   };
 
   render() {
-    const { name, id, modified } = this.props;
+    const { name, id } = this.props;
+    const modified = new Date(this.props.modified);
     return (
       <div className="Note">
         <h2 className="Note__title">
@@ -53,10 +62,7 @@ export default class Note extends React.Component {
         </button>
         <div className="Note__dates">
           <div className="Note__dates-modified">
-            Modified{" "}
-            <span className="Date">
-              {format(parseISO(modified), "dd mm yyyy")}
-            </span>
+            Modified <span className="Date">{modified.toLocaleString()}</span>
           </div>
         </div>
       </div>

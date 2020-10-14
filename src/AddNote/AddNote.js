@@ -7,9 +7,6 @@ export default class AddNote extends React.Component {
   static contextType = ApiContext;
 
   addNewNote = (note) => {
-    note.modified = new Date(note.modified);
-    console.log(note.modified);
-
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: "POST",
       headers: {
@@ -18,7 +15,6 @@ export default class AddNote extends React.Component {
       body: JSON.stringify(note),
     })
       .then((res) => {
-        console.log(JSON.stringify(note));
         return res.json();
       })
       .then((resJson) => this.context.handleAddNote(resJson));
@@ -35,9 +31,9 @@ export default class AddNote extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault(e);
     const newNote = {
-      name: e.target.name.value,
-      content: e.target.content.value,
-      folder_id: e.target.folders.value,
+      name: this.context.newNote.name.value,
+      content: this.context.newNote.content.value,
+      folder_id: this.context.newNote.folder_id.value,
       modified: new Date(),
     };
     console.log(newNote);
@@ -58,7 +54,6 @@ export default class AddNote extends React.Component {
   };
 
   render() {
-    console.log(this.context);
     return (
       <>
         <header>
@@ -70,22 +65,25 @@ export default class AddNote extends React.Component {
         >
           <label htmlFor="name">
             Name
-            {/* {this.context.addNote.name.touched && <p>{this.validateName}</p>} */}
+            {this.context.newNote.name.touched && <p>{this.validateName()}</p>}
           </label>
           <input
             type="text"
-            name="newNoteName"
-            id="newNoteName"
+            name="name"
+            id="name"
             placeholder="Name your note!"
             aria-required="true"
             aria-label="Name"
+            defaultValue="Note Name"
             onChange={(e) =>
               this.context.updateNewNoteData(e.target.name, e.target.value)
             }
           />
           <label>
-            Note
-            {/* {this.context.newNote.content.touched && <p>{this.validateNote}</p>} */}
+            Content
+            {this.context.newNote.content.touched && (
+              <p>{this.validateNote()}</p>
+            )}
           </label>
           <input
             type="text"
@@ -94,17 +92,22 @@ export default class AddNote extends React.Component {
             placeholder="New note here."
             aria-required="true"
             aria-label="note-content"
+            defaultValue="Content"
             onChange={(e) =>
               this.context.updateNewNoteData(e.target.name, e.target.value)
             }
           />
           <label>Select a Folder For New Note</label>
           <select
-            name="folders"
-            id="folders"
+            name="folder_id"
+            id="folder_id"
             aria-required="true"
             aria-label="folder-selections"
+            onChange={(e) =>
+              this.context.updateNewNoteData(e.target.name, e.target.value)
+            }
           >
+            <option value="">Select Folder....</option>
             {this.parseFolders()}
           </select>
           <button type="submit">Submit New Note</button>

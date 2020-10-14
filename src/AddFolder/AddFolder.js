@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import config from "../config";
 import ApiContext from "../APIContext";
 import "./AddFolder.css";
-import PropTypes from "prop-types";
 
 export default class AddFolder extends Component {
   static contextType = ApiContext;
