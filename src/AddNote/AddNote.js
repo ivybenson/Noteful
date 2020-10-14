@@ -110,7 +110,12 @@ export default class AddNote extends React.Component {
             <option value="">Select Folder....</option>
             {this.parseFolders()}
           </select>
-          <button type="submit">Submit New Note</button>
+          <button
+            type="submit"
+            disabled={this.validateName() || this.validateNote()}
+          >
+            Submit New Note
+          </button>
         </form>
       </>
     );

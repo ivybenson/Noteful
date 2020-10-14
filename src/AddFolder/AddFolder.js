@@ -64,7 +64,11 @@ export default class AddFolder extends Component {
             aria-label="Name"
             onChange={(e) => this.updateFolderName(e)}
           />
-          <button className="new-folder-btn" type="submit">
+          <button
+            className="new-folder-btn"
+            type="submit"
+            disabled={this.validateFolderName()}
+          >
             Submit New Folder
           </button>
         </form>
