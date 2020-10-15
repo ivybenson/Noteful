@@ -14,8 +14,18 @@ export default class AddFolder extends Component {
       },
       body: JSON.stringify({ name }),
     })
+      .then((resp) => {
+        if (!resp.ok) {
+          return resp.json().then((error) => {
+            throw error;
+          });
+        }
+      })
       .then((resp) => resp.json())
-      .then((data) => this.context.addFolder(data));
+      .then((data) => this.context.addFolder(data))
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   handleSubmit(event) {

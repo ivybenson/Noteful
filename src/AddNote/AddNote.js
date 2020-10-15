@@ -15,9 +15,19 @@ export default class AddNote extends React.Component {
       body: JSON.stringify(note),
     })
       .then((res) => {
+        if (!res.ok) {
+          return res.json().then((error) => {
+            throw error;
+          });
+        }
+      })
+      .then((res) => {
         return res.json();
       })
-      .then((resJson) => this.context.handleAddNote(resJson));
+      .then((resJson) => this.context.handleAddNote(resJson))
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   parseFolders = () => {
@@ -33,7 +43,7 @@ export default class AddNote extends React.Component {
     const newNote = {
       name: this.context.newNote.name.value,
       content: this.context.newNote.content.value,
-      folder_id: this.context.newNote.folder_id.value,
+      folderId: this.context.newNote.folderId.value,
       modified: new Date(),
     };
     console.log(newNote);
