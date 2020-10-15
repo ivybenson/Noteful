@@ -15,13 +15,6 @@ export default class AddNote extends React.Component {
       body: JSON.stringify(note),
     })
       .then((res) => {
-        if (!res.ok) {
-          return res.json().then((error) => {
-            throw error;
-          });
-        }
-      })
-      .then((res) => {
         return res.json();
       })
       .then((resJson) => this.context.handleAddNote(resJson))
