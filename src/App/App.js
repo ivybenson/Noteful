@@ -38,9 +38,14 @@ class App extends Component {
   };
 
   componentDidMount() {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${config.API_TOKEN}`,
+      },
+    };
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/notes`),
-      fetch(`${config.API_ENDPOINT}/folders`),
+      fetch(`${config.API_ENDPOINT}/notes`, options),
+      fetch(`${config.API_ENDPOINT}/folders`, options),
     ])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));

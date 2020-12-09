@@ -11,6 +11,7 @@ export default class AddNote extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${config.API_TOKEN}`,
       },
       body: JSON.stringify(note),
     })
@@ -34,9 +35,9 @@ export default class AddNote extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault(e);
     const newNote = {
-      name: this.context.newNote.name.value,
+      title: this.context.newNote.name.value,
       content: this.context.newNote.content.value,
-      folderId: this.context.newNote.folderId.value,
+      folderid: this.context.newNote.folderId.value,
       modified: new Date(),
     };
     console.log(newNote);
