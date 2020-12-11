@@ -19,8 +19,8 @@ export default class NotePageNav extends React.Component {
 
   render() {
     const { notes, folders } = this.context;
-    const { noteId } = this.props.match.params;
-    const note = findNote(notes, noteId) || {};
+    const { noteid } = this.props.match.params;
+    const note = findNote(notes, noteid) || {};
     const folder = findFolder(folders, note.folderId);
     return (
       <div className="NotePageNav">
