@@ -35,7 +35,7 @@ export default class AddNote extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault(e);
     const newNote = {
-      title: this.context.newNote.name.value,
+      name: this.context.newNote.name.value,
       content: this.context.newNote.content.value,
       folderid: this.context.newNote.folderid.value,
       modified: new Date(),
