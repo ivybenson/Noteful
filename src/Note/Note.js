@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 export default class Note extends React.Component {
   static defaultProps = {
     onDeleteNote: () => {},
-    id: "0",
+    id: 0,
     name: "Default Note",
     modified: new Date(),
   };
@@ -68,7 +68,7 @@ export default class Note extends React.Component {
 }
 
 Note.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   modified: PropTypes.string.isRequired,
 };
