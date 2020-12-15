@@ -26,7 +26,7 @@ class App extends Component {
         touched: false,
         value: "",
       },
-      folderId: {
+      folderid: {
         touched: false,
         value: "",
       },
@@ -105,7 +105,7 @@ class App extends Component {
   renderNavRoutes() {
     return (
       <>
-        {["/", "/folder/:folderId"].map((path) => (
+        {["/", "/folder/:folderid"].map((path) => (
           <Route exact key={path} path={path} component={NoteListNav} />
         ))}
         <Route path="/note/:noteid" component={NotePageNav} />
@@ -118,7 +118,7 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
-        {["/", "/folder/:folderId"].map((path) => (
+        {["/", "/folder/:folderid"].map((path) => (
           <Route exact key={path} path={path} component={NoteListMain} />
         ))}
         <Route path="/note/:noteid" component={NotePageMain} />

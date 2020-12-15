@@ -37,7 +37,7 @@ export default class AddNote extends React.Component {
     const newNote = {
       title: this.context.newNote.name.value,
       content: this.context.newNote.content.value,
-      folderid: this.context.newNote.folderId.value,
+      folderid: this.context.newNote.folderid.value,
       modified: new Date(),
     };
     console.log(newNote);
@@ -102,8 +102,8 @@ export default class AddNote extends React.Component {
           />
           <label>Select a Folder For New Note</label>
           <select
-            name="folderId"
-            id="folderId"
+            name="folderid"
+            id="folderid"
             aria-required="true"
             aria-label="folder-selections"
             required
