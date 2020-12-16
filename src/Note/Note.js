@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 export default class Note extends React.Component {
   static defaultProps = {
     onDeleteNote: () => {},
-    note_id: 0,
+    id: 0,
     name: "Default Note",
     modified: new Date(),
   };
@@ -29,9 +29,6 @@ export default class Note extends React.Component {
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
-        return res.json();
-      })
-      .then(() => {
         this.context.deleteNote(noteid);
         this.props.onDeleteNote(noteid);
       })
